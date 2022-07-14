@@ -1,4 +1,4 @@
-const requestURL = "https://t-cool.github.io/English-to-IPA-js/dict.json";
+const requestURL = "https://t-cool.github.io/English-to-IPA/dict.json";
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'text';
