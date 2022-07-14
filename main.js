@@ -27,7 +27,7 @@ function get_cmu(words_array){
     if(asset[word]){
       fetched_words.push([asset[word]]);
     }else{
-      fetched_words.push([`${word}*`]);
+      fetched_words.push([[`"${word}"`]]);
     }
   })
   return fetched_words;
@@ -40,11 +40,12 @@ function cmu_to_ipa(cmu_list){
   // 発音記号に置き換える
   let final_list = [];
   cmu_list.forEach((arr)=>{
+    console.log(typeof(arr));
 
     let acc = [];
     arr.forEach((arr2)=>{
-      // arr2 => ['aa r', 'er']
-      arr2.forEach((syllables)=>{  
+
+      arr2.forEach((syllables) => {  
         // syllables => 'aa r'
         let arr3 = syllables.split(" ");
         // arr3 => ['aa', 'r']
@@ -64,6 +65,12 @@ function cmu_to_ipa(cmu_list){
   
   return final_list
 }
+
+
+console.log(
+get_cmu(['carnegieee'])
+
+)
 
 function convert(words_in){
   // 文字列を配列の形式に変換する
@@ -111,5 +118,7 @@ function hideElements(){
   convert.style.display = "none";
   text.style.display = "none";
 }
+
+
 
 }
