@@ -88,5 +88,28 @@ document.getElementById("convert").addEventListener('click',(e)=>{
   document.querySelector("#text").value = convert(inputText.toString());
 })
 
+function makeBox(word, sounds){
+  const boxDom = document.createElement("form");
+  boxDom.className = "item";
+  containerB.appendChild(boxDom);
+
+  const wordDom = document.createElement("div");
+
+  // ここの単語
+  wordDom.innerText = word;
+  boxDom.appendChild(wordDom);
+
+  // 選択肢
+  const soundsDom = document.createElement("select");
+  sounds.map(value => soundsDom.append(new Option(value)));
+
+  boxDom.appendChild(soundsDom);
+}
+
+function hideElements(){
+  caption.style.display = "none";
+  convert.style.display = "none";
+  text.style.display = "none";
+}
 
 }
