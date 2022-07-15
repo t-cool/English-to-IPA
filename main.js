@@ -55,18 +55,20 @@ function cmu_to_ipa(cmu_list){
     let acc = [];
     cmu_list2.forEach((arr2)=>{
       arr2.forEach((syllables) => {  
+        syllables = syllables.toString();
         // syllables => 'aa r'
         let arr3 = syllables.split(" ");
         // arr3 => ['aa', 'r']
         let syllableIPA = [];
         arr3.forEach((syllable)=>{
+
           if(symbols[syllable]){
             syllableIPA.push(symbols[syllable]);
-          }else{
+          }else{;
             syllableIPA.push(syllable);
           }
         })
-        acc.push(syllableIPA.join(""));
+        acc.push(syllableIPA.join("").toString().split(","));
       });
     })
     final_list.push([cmu_list1, acc]);
@@ -75,12 +77,13 @@ function cmu_to_ipa(cmu_list){
   return final_list
 }
 
-console.log(remove_punc("to the"));
-console.log(get_cmu(['to', 'the']));
-console.log(cmu_to_ipa([
-                        ["to",['t uw','t ah'] ],
-                        ["the",['dh ah'] ]
-                       ]));
+// console.log(remove_punc("to the"));
+// console.log(get_cmu(['to', 'the']));
+// console.log(cmu_to_ipa([
+//                         ["to",['t uw','t ah'] ],
+//                         ["the",['dh ah'] ]
+//                        ]));
+// console.log(convert("He went to Osakaa"));
 function convert(words_in){
   // 文字列を配列の形式に変換する
   let words_array = remove_punc(words_in);
