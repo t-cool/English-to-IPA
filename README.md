@@ -7,7 +7,7 @@ This project was ported to JavaScript based on the [mphilli/English-to-IPA](http
 
 ## Usage
 
-![screenshots.png](./screenshots.png)
+![screencast.gif](./screencast.gif)
 
 It is available on the GitHub Page at https://t-cool.github.io/English-to-IPA/ .
 
