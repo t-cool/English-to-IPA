@@ -25,26 +25,35 @@ function get_cmu(words_array){
   let fetched_words = [];
   words_array.forEach((word)=>{
     if(asset[word]){
-      fetched_words.push([asset[word]]);
+      fetched_words.push([word, [asset[word]]]);
     }else{
-      fetched_words.push([[`"${word}"`]]);
+      fetched_words.push([word, [[`"${word}"`]]]);
     }
   })
   return fetched_words;
 }
 
+// console.log(
+//   get_cmu(['to'])
+// )
 function cmu_to_ipa(cmu_list){
 
   let symbols = {"a": "ə", "ey": "eɪ", "aa": "ɑ", "ae": "æ", "ah": "ʌ", "ao": "ɔ", "aw": "aʊ", "ay": "aɪ", "ch": "ʧ", "dh": "ð", "eh": "ɛ", "er": "ər", "hh": "h", "ih": "ɪ", "jh": "ʤ", "ng": "ŋ",  "ow": "oʊ", "oy": "ɔɪ", "sh": "ʃ", "th": "θ", "uh": "ʊ", "uw": "u", "zh": "ʒ", "iy": "iː", "y": "j"};
 
-  // 発音記号に置き換える
+  // 引数の cmu_list
+  // => ["to", ['t uw', 't ah']]
+  let cmu_list1 = [];
+  let cmu_list2 = [];
   let final_list = [];
+
+  final_list = [];
+  // 発音記号に置き換える
   cmu_list.forEach((arr)=>{
-    console.log(typeof(arr));
-
+    cmu_list1 = arr.slice(0,1);
+    cmu_list2 = arr.slice(1,2);
+    
     let acc = [];
-    arr.forEach((arr2)=>{
-
+    cmu_list2.forEach((arr2)=>{
       arr2.forEach((syllables) => {  
         // syllables => 'aa r'
         let arr3 = syllables.split(" ");
@@ -60,18 +69,18 @@ function cmu_to_ipa(cmu_list){
         acc.push(syllableIPA.join(""));
       });
     })
-    final_list.push(acc);
+    final_list.push([cmu_list1, acc]);
   })
   
   return final_list
 }
 
-
-console.log(
-get_cmu(['carnegieee'])
-
-)
-
+console.log(remove_punc("to the"));
+console.log(get_cmu(['to', 'the']));
+console.log(cmu_to_ipa([
+                        ["to",['t uw','t ah'] ],
+                        ["the",['dh ah'] ]
+                       ]));
 function convert(words_in){
   // 文字列を配列の形式に変換する
   let words_array = remove_punc(words_in);
