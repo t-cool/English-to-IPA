@@ -34,7 +34,9 @@ function get_cmu(words_array){
 }
 
 function cmu_to_ipa(cmu_list){
-  let symbols = {"a": "ə", "ey": "eɪ", "aa": "ɑ", "ae": "æ", "ah": "ʌ", "ao": "ɔ", "aw": "aʊ", "ay": "aɪ", "ch": "ʧ", "dh": "ð", "eh": "ɛ", "er": "ər", "hh": "h", "ih": "ɪ", "jh": "ʤ", "ng": "ŋ",  "ow": "oʊ", "oy": "ɔɪ", "sh": "ʃ", "th": "θ", "uh": "ʊ", "uw": "u", "zh": "ʒ", "iy": "iː", "y": "j"};
+  let symbols = {"a": "ə", "ey": "ei", "aa": "ɑ", "ae": "æ", "ah": "ʌ", "ao": "ɔ", "aw": "au", "ay": "ai", "ch": "tʃ", "dh": "ð", "eh": "e", "er": "ər", "hh": "h", "ih": "i", "jh": "dʒ", "ng": "ŋ",  "ow": "ou", "oy": "ɔi", "sh": "ʃ", "th": "θ", "uh": "u", "uw": "u", "zh": "ʒ", "iy": "iː", "y": "j"};
+  // Jhones 式に一部置き換え
+  // ɛ => e  ʊ => u  ɪ => i
 
   let cmu_list1 = [];
   let cmu_list2 = [];
@@ -85,7 +87,6 @@ function convert(words_in){
   // 音素を IPA 形式に変換
   let ipa_words_array = cmu_to_ipa(cmu_words_array);
   // =>　[['ɑr', 'ər'], ['ju'], ['bɑb'], ['lʊk']]
-
   return ipa_words_array
 }
 
