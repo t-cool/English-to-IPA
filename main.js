@@ -5,12 +5,12 @@ request.responseType = 'text';
 request.send();
 
 request.onload = function() {
-// データベース
+// DB
 let asset = JSON.parse(request.response);
 asset = asset[0];
 
+// 補助関数
 function remove_punc(words){
-  // 単語をIPAに変換し、単語の前後にある句読点を取り除く
   let words_preserved = [];
   words = words.split(" ");
   for (w of words) {
@@ -33,15 +33,9 @@ function get_cmu(words_array){
   return fetched_words;
 }
 
-// console.log(
-//   get_cmu(['to'])
-// )
 function cmu_to_ipa(cmu_list){
-
   let symbols = {"a": "ə", "ey": "eɪ", "aa": "ɑ", "ae": "æ", "ah": "ʌ", "ao": "ɔ", "aw": "aʊ", "ay": "aɪ", "ch": "ʧ", "dh": "ð", "eh": "ɛ", "er": "ər", "hh": "h", "ih": "ɪ", "jh": "ʤ", "ng": "ŋ",  "ow": "oʊ", "oy": "ɔɪ", "sh": "ʃ", "th": "θ", "uh": "ʊ", "uw": "u", "zh": "ʒ", "iy": "iː", "y": "j"};
 
-  // 引数の cmu_list
-  // => ["to", ['t uw', 't ah']]
   let cmu_list1 = [];
   let cmu_list2 = [];
   let final_list = [];
@@ -77,13 +71,7 @@ function cmu_to_ipa(cmu_list){
   return final_list
 }
 
-// console.log(remove_punc("to the"));
-// console.log(get_cmu(['to', 'the']));
-// console.log(cmu_to_ipa([
-//                         ["to",['t uw','t ah'] ],
-//                         ["the",['dh ah'] ]
-//                        ]));
-// console.log(convert("He went to Osakaa"));
+// main 関数
 function convert(words_in){
   // 文字列を配列の形式に変換する
   let words_array = remove_punc(words_in);
@@ -101,10 +89,14 @@ function convert(words_in){
   return ipa_words_array
 }
 
+// UI
 document.getElementById("convert").addEventListener('click',(e)=>{
-  console.log("btn");
   let inputText = document.querySelector("#text").value;
-  document.querySelector("#text").value = convert(inputText.toString());
+  let converted_data = convert(inputText);
+  for (wordIPA of converted_data){
+    makeBox(wordIPA[0][0],wordIPA[1][0]);
+  }
+  hideElements(); 
 })
 
 function makeBox(word, sounds){
@@ -126,11 +118,9 @@ function makeBox(word, sounds){
 }
 
 function hideElements(){
-  caption.style.display = "none";
-  convert.style.display = "none";
-  text.style.display = "none";
+  document.getElementById("caption").style.display = "none";
+  document.getElementById("convert").style.display = "none";
+  document.getElementById("text").style.display = "none";
 }
-
-
 
 }
