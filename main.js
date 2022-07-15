@@ -14,20 +14,23 @@ function remove_punc(words){
   let words_preserved = [];
   words = words.split(" ");
   for (w of words) {
-    w = w.toLowerCase();
-    let punct_str = w.replace(/\!|\"|\#|\$|\%|\&|\\|\'|\(|\)|\*|\+|\,|\-|\.|\/|\:|\;|\<|\=|\>|\/|\?|\@|\[|\\|\\|\]|\^|\_|\`|\{|\||\}|\~|\«|\»|\ /g, '');
-    words_preserved.push(punct_str);
+    lowerWord = w.toLowerCase();
+    let punct_str = lowerWord.replace(/\!|\"|\#|\$|\%|\&|\\|\'|\(|\)|\*|\+|\,|\-|\.|\/|\:|\;|\<|\=|\>|\/|\?|\@|\[|\\|\\|\]|\^|\_|\`|\{|\||\}|\~|\«|\»|\ /g, '');
+    words_preserved.push([w, punct_str]);
   }
   return words_preserved
 }
 
 function get_cmu(words_array){
+  // [['He', 'he'],['is', 'is'] ]
+  let words_array2 = words_array;
+
   let fetched_words = [];
-  words_array.forEach((word)=>{
-    if(asset[word]){
-      fetched_words.push([word, [asset[word]]]);
+  words_array.forEach((wordArray)=>{
+    if(asset[wordArray[1]]){
+      fetched_words.push([wordArray[0], [asset[wordArray[1]]]]);
     }else{
-      fetched_words.push([word, [[`"${word}"`]]]);
+      fetched_words.push([wordArray[0], [[`"${wordArray[0]}"`]]]);
     }
   })
   return fetched_words;
@@ -75,12 +78,12 @@ function cmu_to_ipa(cmu_list){
 function convert(words_in){
   // 文字列を配列の形式に変換する
   let words_array = remove_punc(words_in);
-  // =>　['are', 'you', 'okay', 'bob', 'look']
+  // =>　[['He', 'he'],['is', 'is'] ]
 
   // DB に単語を問い合わせ、音素を返す
   let cmu_words_array = get_cmu(words_array);
-  // console.log(cmu_words_array);
-  // =>　[['aa r', 'er'], ['y uw'], ]
+  console.log(cmu_words_array);
+  // =>　[['Are',['aa r', 'er']], ['you', ['y uw']], ]
 
   // 音素を IPA 形式に変換
   let ipa_words_array = cmu_to_ipa(cmu_words_array);
