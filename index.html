@@ -14,19 +14,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #044b82;
+  background-color: rgb(5,75,130);
   font-family: "Kanit", Verdana, Arial, sans-serif;
 }
 * {
   box-sizing: border-box;
 }
 #containerA {
-  width: 430px;
+  width: 700px;
   padding: 40px 20px;
   background: white;
 }
 #containerB {
   display: flex;
+  flex-wrap: wrap;
+
 }
 .item{
     margin: 5px;
@@ -82,16 +84,22 @@ select {
     appearance: none;
     border: none;
 }
+#containerB{
+  display: flex;
+
+
+}
     </style>
   </style>
 </head>
 <body>
   <div id="containerA">
-  <h1 id="caption">attach phonetic symbols to English sentences</h1>
-  <textarea placeholder="" id="text"></textarea>
-  <button id="convert">Convert</button>
-  <div id="containerB"></div>
-</div>
+    <h1 id="caption">attach phonetic symbols to English sentences</h1>
+    <textarea placeholder="" id="text"></textarea>
+    <button id="convert">Convert</button>
+    <div id="containerB"></div>
+
+  </div>
 <script src="./main.js"></script>
 </body>
 </html>
