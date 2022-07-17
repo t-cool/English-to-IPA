@@ -1,6 +1,6 @@
 # English to IPA
 
-This program utilizes the Carnegie-Mellon University Pronouncing Dictionary to convert English text into the International Phonetic Alphabet.
+This program converts English text into the International Phonetic Alphabet (IPA) using the Pronouncing Dictionary published by Carnegie-Mellon University.
 
 This project was ported to JavaScript based on the [mphilli/English-to-IPA](https://github.com/mphilli/English-to-IPA) project.
 
