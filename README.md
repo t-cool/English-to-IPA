@@ -11,6 +11,7 @@ This project was ported to JavaScript based on the [mphilli/English-to-IPA](http
 
 It is available on the GitHub Page at https://t-cool.github.io/English-to-IPA/ .
 
+Please paste the sentences you want to add phonetic symbols to and press the convert button. You can also click on each word to have it read aloud.
 
 ## License
 
