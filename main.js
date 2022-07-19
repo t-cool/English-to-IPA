@@ -4,7 +4,13 @@ request.open('GET', requestURL);
 request.responseType = 'text';
 request.send();
 
-request.onload = function() {
+const voice = new talkify.Html5Player();
+voice.forceLanguage('en');
+voice.setRate(1);
+
+request.onload = function
+
+() {
 // DB
 let asset = JSON.parse(request.response);
 asset = asset[0];
@@ -117,6 +123,10 @@ function makeBox(word, sounds){
   sounds.map(value => soundsDom.append(new Option(value)));
 
   boxDom.appendChild(soundsDom);
+  boxDom.addEventListener('click',function(e){
+    //読み上げ
+    voice.playText(word);
+  })
 }
 
 function hideElements(){
